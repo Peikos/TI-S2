@@ -3,7 +3,6 @@
 # TODO
 # - Order: extract index based on metadata, prepend index to filename?
 # - Package in docker-image to aleviate dependencies
-# - Front page
 # - Index
 # - Sexier chapter headings?
 # - Multi-level structure (parts for software / hardware, chapters, ...)
@@ -44,6 +43,12 @@ done
 # Copy eisvogel if present in current directory, or else download from GitHub
 cp eisvogel.tex _reader || curl https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex > _reader/eisvogel.tex
 
+cp metadata.yaml _reader
+echo "title: $(basename $PWD)" >> _reader/metadata.yaml
+echo "date: $(date +"%e %B %Y")" >> _reader/metadata.yaml
+
 # In _reader, concat all the files into a single PDF
 cd _reader
-pandoc $(find . -name "*.md" | sort) -o result.pdf --template eisvogel.tex --listings
+pandoc $(find . -name "*.md" | sort) --metadata-file metadata.yaml -o result.pdf --template eisvogel.tex --listings
+
+cp result.pdf ..

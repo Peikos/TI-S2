@@ -1,0 +1,9 @@
+book: true
+titlepage: true
+titlepage-color: "00AAFF"
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-logo: "img/hu-white.png"
+toc-own-page: true
+author: "Harm Wouter Snippe"
+subtitle: "Everything you needed to know - and more!"
