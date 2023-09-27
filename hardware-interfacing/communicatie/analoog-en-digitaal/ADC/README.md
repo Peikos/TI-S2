@@ -1,16 +1,16 @@
-![logo](/hardware-interfacing/communicatie/analoog-en-digitaal/img/Kennline_NTC.png) [](logo-id)
+![logo](../img/Kennline_NTC.png) [](logo-id)
 
 # ADC: analoog naar digitaal[](title-id)
 
 ### Inhoud[](toc-id)
 
 - [ADC: analoog naar digitaal](#adc-analoog-naar-digitaal)
-    - [Inhoud](#inhoud)
-  - [Een introductie](#een-introductie)
-  - [GYML8511 UV sensor](#gyml8511-uv-sensor)
-  - [De schakeling](#de-schakeling)
-  - [Arduino voorbeeld code](#arduino-voorbeeld-code)
-  - [Referenties](#referenties)
+  - [Inhoud](#inhoud)
+    - [Een introductie](#een-introductie)
+    - [GYML8511 UV sensor](#gyml8511-uv-sensor)
+    - [De schakeling](#de-schakeling)
+    - [Arduino voorbeeld code](#arduino-voorbeeld-code)
+    - [Referenties](#referenties)
 
 ---
 
@@ -68,10 +68,10 @@ void loop()
 {
   int uvLevel = averageAnalogRead(UVOUT);
   int refLevel = averageAnalogRead(REF_3V3);
-  
+
   //Use the 3.3V power pin as a reference
   float outputVoltage = 3.3 / refLevel * uvLevel;
-  
+
   float uvIntensity = mapfloat(outputVoltage, 0.99, 2.9, 0.0, 15.0);
 
   Serial.print("MP8511 output: ");
@@ -82,9 +82,9 @@ void loop()
 
   Serial.print(" UV Intensity (mW/cm^2): ");
   Serial.print(uvIntensity);
-  
+
   Serial.println();
-  
+
   delay(1000);
 }
 
@@ -108,6 +108,7 @@ float mapfloat(float x, float in_min, float in_max, float out_min, float out_max
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 ```
+
 [Arduino bestand](../ADC/files/GYMP8511/GYMP8511.ino) 
 
 ## Referenties

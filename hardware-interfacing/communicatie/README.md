@@ -1,13 +1,13 @@
-![logo](/hardware-interfacing/communicatie/SPI/img/SPI_timing_diagram_CS.svg) [](logo-id)
+![logo](SPI/img/SPI_timing_diagram_CS.svg) [](logo-id)
 
 # Communicatie[](title-id)
 
 ### Inhoud[](toc-id)
 
 - [Communicatie](#communicatie)
-    - [Inhoud](#inhoud)
-  - [Een introductie](#een-introductie)
-  - [Referenties](#referenties)
+  - [Inhoud](#inhoud)
+    - [Een introductie](#een-introductie)
+    - [Referenties](#referenties)
 
 ---
 
@@ -26,4 +26,5 @@ Een bus met even veel draadjes als de hoeveelheid databits die gestuurd moeten w
 Er zijn veel verschillende bussen en communicatieprotocollen. Iedere combinatie bus + communicatieprotocol maakt een andere overweging en eindigd qua voor en nadelen tussen de bovenstaand genoemde extreeme vormen. Hier behandelen we [SPI](../communicatie/SPI/README.md) en [I2C](../communicatie/I2C/README.md), de populairste bus en communicatieprotocol combinaties voor de communicatie tussen chips. Daarnaast leren we [1-Wire](../communicatie/1-wire/README.md) te gebruiken en het uitwisselen van data via [analoge en digitale signalen](../communicatie/analoog-en-digitaal/README.md).
 
 ## Referenties
+
 - Serial Peripheral Interface (<https://en.wikipedia.org/wiki/Serial_Peripheral_Interface>)

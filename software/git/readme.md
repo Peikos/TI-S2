@@ -5,30 +5,30 @@
 ### Inhoud[](toc-id)
 
 - [Git](#git)
-    - [Inhoud](#inhoud)
-  - [Version Control System](#version-control-system)
-  - [Alternatives to Git](#alternatives-to-git)
-  - [Distributed versus centralized VCS](#distributed-versus-centralized-vcs)
-  - [Git as a service](#git-as-a-service)
-  - [Git from the command line](#git-from-the-command-line)
-  - [Using Git](#using-git)
-    - [Creating a repository](#creating-a-repository)
-    - [Clone versus Fork](#clone-versus-fork)
-    - [Basic workflow](#basic-workflow)
-  - [Branching](#branching)
-    - [Branching strategies](#branching-strategies)
-    - [Branch how?](#branch-how)
-    - [Branch 'Workflow'](#branch-workflow)
-  - [Pull requests](#pull-requests)
-  - [Git Commands](#git-commands)
-    - [status](#status)
-    - [config](#config)
-    - [branch](#branch)
-    - [stage, commit en merge](#stage-commit-en-merge)
-  - [Workflow for trusted team](#workflow-for-trusted-team)
-  - [Workflow for unknown contributors](#workflow-for-unknown-contributors)
-  - [Git recommended workflow](#git-recommended-workflow)
-  - [Referenties](#referenties)
+  - [Inhoud](#inhoud)
+    - [Version Control System](#version-control-system)
+    - [Alternatives to Git](#alternatives-to-git)
+    - [Distributed versus centralized VCS](#distributed-versus-centralized-vcs)
+    - [Git as a service](#git-as-a-service)
+    - [Git from the command line](#git-from-the-command-line)
+    - [Using Git](#using-git)
+  - [Creating a repository](#creating-a-repository)
+  - [Clone versus Fork](#clone-versus-fork)
+  - [Basic workflow](#basic-workflow)
+    - [Branching](#branching)
+  - [Branching strategies](#branching-strategies)
+  - [Branch how?](#branch-how)
+  - [Branch 'Workflow'](#branch-workflow)
+    - [Pull requests](#pull-requests)
+    - [Git Commands](#git-commands)
+  - [status](#status)
+  - [config](#config)
+  - [branch](#branch)
+  - [stage, commit en merge](#stage-commit-en-merge)
+    - [Workflow for trusted team](#workflow-for-trusted-team)
+    - [Workflow for unknown contributors](#workflow-for-unknown-contributors)
+    - [Git recommended workflow](#git-recommended-workflow)
+    - [Referenties](#referenties)
 
 ---
 
@@ -76,16 +76,15 @@ Cloning and Forking both create copies of a repository, but with different inten
 
 `git add`: Allows to add new files to the staging area; can be new files or tracked files that have changed
 
-
 `git add` has a lot of flags you can use to make using it easier, but usually it’s neater to use filenames directly -> `git add <filename1> <filename2>`
 
     https://stackoverflow.com/a/26039014
-
+    
     Using these flags is generally discouraged, but if you DO use them at least make sure you know what they do exactly.
 
 `git restore`: Allows for removal of staged files from staging area -> `git restore <filename>`
 
-`git commit`: ‘Saves’ staging area to local repository. Use the –m flag to add a commit message. Another –m can be used for a more detailed description -> `git commit –m “COMMIT MESSAGE” –m “MORE DETAILS”`. The first –m is ‘required’ (not adding it opens a text editor to type it instead), the second is optional.
+`git commit`: ‘Saves’ staging area to local repository. Use the –m flag to add a commit message. Another –m can be used for a more detailed description -> `git commit -m "COMMIT MESSAGE" -m "MORE DETAILS"`. The first –m is ‘required’ (not adding it opens a text editor to type it instead), the second is optional.
 
 There is also `git push` to push to your remote repo, but this is further explained in the branching segment.
 
@@ -101,19 +100,19 @@ There are a few different strategies development teams use for branching, but th
 
 ### Branch how?
 
-Making new branches or switching to existing branches can be done using the `git checkout` commands. Adding the `-b` flag allows for making a new branch as such; `git checkout –b “new_branch_name”` (quotes aren’t necessary, but I use them automatically). If you leave out the –b flag you change to an existing branch instead -> `git checkout “dev”` would switch to the ‘dev’ branch.
+Making new branches or switching to existing branches can be done using the `git checkout` commands. Adding the `-b` flag allows for making a new branch as such; `git checkout -b "new_branch_name"` (quotes aren’t necessary, but I use them automatically). If you leave out the –b flag you change to an existing branch instead -> `git checkout "dev"` would switch to the ‘dev’ branch.
 
 ### Branch 'Workflow'
 
 Working with branches introduces a few new commands. 
 
-`git checkout` is used for switching branches or making a new one. The –b flag allows for making a new, while leaving that flag unchecked switches to a different branch; `git checkout (-b) “branch_name”`
+`git checkout` is used for switching branches or making a new one. The –b flag allows for making a new, while leaving that flag unchecked switches to a different branch; `git checkout (-b) "branch_name"`
 
 `git pull` pulls changes from the remote to your local repository. If you use this in a specific branch only the changes from the remote to that branch are pulled. For example, if the dev branch has been changed but you pull a different feature branch, you don’t pull the changes to the dev branch.
 
 `git push` pushes your local commits to the branch you are in to the corresponding branch on the remote. Similar to pull, this only works for the specific branch you are on.
 
-`git merge “other”` merges ‘other’ into the branch you are currently in. Merging can create merge conflicts, so using it properly requires a merging strategy.
+`git merge "other"` merges ‘other’ into the branch you are currently in. Merging can create merge conflicts, so using it properly requires a merging strategy.
 
 The general workflow for **merging** a feature into a destination.
 
@@ -134,6 +133,7 @@ Pull requests are a [GitHub](https://www.GitHub.com) feature, not Git. They allo
 ## Git Commands
 
 ### status
+
 Zorg dat Git Bash altijd in directory staat waar ook de repo is.
 
 ```bash
@@ -142,8 +142,10 @@ git status
 git log --all --graph  (en evt --oneline)
 ```
 
-### config 
+### config
+
 Vooraf eenmalig instellen
+
 ```bash
 # VsCode instellen als default editor:
 git config --global core.editor "code --wait"
@@ -204,12 +206,15 @@ git push origin --delete myBranch
 ```
 
 ## Workflow for trusted team
+
 ![Workflow for trusted team](../git/img/GIT_Werkwijzen-Vertrouwd.drawio.svg)
 
 ## Workflow for unknown contributors
+
 ![Workflow_for_unknown_contributors](../git/img/GIT_Werkwijzen-OpenSource.drawio.svg)
 
 ## Git recommended workflow
+
 ![Workflow_for_unknown_contributors](../git/img/GIT_Werkwijzen-Koninklijke%20Weg.drawio.svg)
 
 ## Referenties

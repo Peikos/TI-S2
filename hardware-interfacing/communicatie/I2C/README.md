@@ -5,10 +5,10 @@
 ### Inhoud[](toc-id)
 
 - [I2C: Inter Integrated Circuit](#i2c-inter-integrated-circuit)
-    - [Inhoud](#inhoud)
-  - [Een introductie](#een-introductie)
-  - [I2C Communicatie protocol](#i2c-communicatie-protocol)
-  - [Referenties](#referenties)
+  - [Inhoud](#inhoud)
+    - [Een introductie](#een-introductie)
+    - [I2C Communicatie protocol](#i2c-communicatie-protocol)
+    - [Referenties](#referenties)
 
 ---
 
@@ -18,29 +18,29 @@
 
 ## Een introductie
 
-I<sup>2</sup>C (Inter Integrated Circuit) is een veel gebruikt communicatie-protocol dat oorspronkelijk ontwikkeld en gepatenteerd is door Philips. Hierdoor moesten andere fabrikanten die het wilden toepassen een vergoeding betalen. Veel fabrikanten vermeden dit door gewoon het I<sup>2</sup>C protocol te gebruiken, maar het TWI (Two Wire Interface) te noemen. Inmiddels is het patent van Philips verlopen, maar je ziet nog vaak de naam TWI in datasheets.
+I$^2$C (Inter Integrated Circuit) is een veel gebruikt communicatie-protocol dat oorspronkelijk ontwikkeld en gepatenteerd is door Philips. Hierdoor moesten andere fabrikanten die het wilden toepassen een vergoeding betalen. Veel fabrikanten vermeden dit door gewoon het I$^2$C protocol te gebruiken, maar het TWI (Two Wire Interface) te noemen. Inmiddels is het patent van Philips verlopen, maar je ziet nog vaak de naam TWI in datasheets.
 
 ![Één master (links) en meerdere slaves aangesloten op een I<sup>2</sup>C-bus](../I2C/img/I2C_master_with_slaves.png)
 
-Bij SPI delen de slaves drie lijnen en zijn er daarnaast selectielijnen die aangeven welke slave mag communiceren. I<sup>2</sup>C gebruikt een andere type bus. De I<sup>2</sup>C-bus bestaat maar uit 1 datalijn, SDA (Serial DAta), 1 kloklijn, SCL (Serial CLock), en geen selectielijnen. Het kost dus minder hardware (draden, I/O pinnen), maar het is ook langzamer dan SPI. Daarnaast is ook het communicatieprotocol complexer. In bovenstaand figuur zien we één master en meerdere slaves aangesloten op een I<sup>2</sup>C-bus.
+Bij SPI delen de slaves drie lijnen en zijn er daarnaast selectielijnen die aangeven welke slave mag communiceren. I$^2$C gebruikt een andere type bus. De I<sup>2</sup>C-bus bestaat maar uit 1 datalijn, SDA (Serial DAta), 1 kloklijn, SCL (Serial CLock), en geen selectielijnen. Het kost dus minder hardware (draden, I/O pinnen), maar het is ook langzamer dan SPI. Daarnaast is ook het communicatieprotocol complexer. In bovenstaand figuur zien we één master en meerdere slaves aangesloten op een I$^2$C-bus.
 
 ![De interne aansluiting van de draden in de slaves bij I<sup>2</sup>](../I2C/img/I2C_intern.png)
 
-I<sup>2</sup>C gebruikt dus twee lijnen: SDA (Serial DAta) en SCL (Serial CLock). Beide lijnen hebben een ‘pull-up’ weerstand. De slaves kunnen deze een lijnen laag trekken (met de ground verbinden), maar niet hoog trekken (dat doen de weerstanden al). Deze opzet wordt opencollector (of open-drain) genoemd. Deze interne aansluiting is zichtbaar in bovenstaand figuur. SDA kan worden gebruikt door zowel de master als de slaves. De SCL wordt aangestuurd door de master.
+I$^2$C gebruikt dus twee lijnen: SDA (Serial DAta) en SCL (Serial CLock). Beide lijnen hebben een ‘pull-up’ weerstand. De slaves kunnen deze een lijnen laag trekken (met de ground verbinden), maar niet hoog trekken (dat doen de weerstanden al). Deze opzet wordt opencollector (of open-drain) genoemd. Deze interne aansluiting is zichtbaar in bovenstaand figuur. SDA kan worden gebruikt door zowel de master als de slaves. De SCL wordt aangestuurd door de master.
 
-    De I<sup>2</sup>C standaard staat ‘clock stretching’ toe: een slave verlengt een klokpuls door de SCL-lijn laag te houden totdat de slave het bitje klaar heeft. Deze mogelijkheid wordt in de praktijk niet vaak gebruikt.
+    De I2C standaard staat 'clock stretching' toe: een slave verlengt een klokpuls door de SCL-lijn laag te houden totdat de slave het bitje klaar heeft. Deze mogelijkheid wordt in de praktijk niet vaak gebruikt.
 
-## I<sup>2</sup>C Communicatie protocol
+## I$^2$C Communicatie protocol
 
 ![De SDA mag alleen veranderen als SCL laag is.](../I2C/img/SDA_SCL.png)
 
-In de overdracht van databits gebruikt I2C een puls op de kloklijn (SCL) om één bit via de SDA-lijn over te dragen. Het protocol eist dat tijdens het verzenden van databits de SDA-lijn stabiel is (niet verandert) terwijl SCL verandert of hoog is (zie bovenstaand figuur). Als er meer dan één bit moet worden verstuurd, dan worden de bits één voor één overgedragen, het hoogste (meest significante) bit eerst. De SCL wordt altijd aangestuurd door de master (meestal een micro-controller), de SDA wordt aangestuurd door het device dat de data verzendt. Dit kan dus zowel de master als een slave zijn.
+In de overdracht van databits gebruikt I$^2$C een puls op de kloklijn (SCL) om één bit via de SDA-lijn over te dragen. Het protocol eist dat tijdens het verzenden van databits de SDA-lijn stabiel is (niet verandert) terwijl SCL verandert of hoog is (zie bovenstaand figuur). Als er meer dan één bit moet worden verstuurd, dan worden de bits één voor één overgedragen, het hoogste (meest significante) bit eerst. De SCL wordt altijd aangestuurd door de master (meestal een micro-controller), de SDA wordt aangestuurd door het device dat de data verzendt. Dit kan dus zowel de master als een slave zijn.
 
-![De S- en P-conditie in I<sup>2</sup>C. B<sub>1</sub>, B<sub>2</sub> ... B<sub>N</sub> geven andere bits aan.](../I2C/img/S_P_contities.png)
+![De S- en P-conditie in I$^2$C. B$_1$, B$_2$> ... B$_n$ geven andere bits aan.](../I2C/img/S_P_contities.png)
 
-Omdat I2C maar twee lijnen heeft moeten we buiten de data die we willen verzenden ook informatie verzenden om het proces van het dataverzenden in goede banen te leiden. Hiervoor heeft I2C twee paar speciale signalen, ook wel condities genoemd: S (start) en P (stoP). De S-conditie wordt verzonden door de SDA laag te maken terwijl SCL hoog is. De P-conditie wordt verzonden door de SDA hoog te maken terwijl SCL hoog is. S geeft het begin van een I2C transactie aan (je kan het zien als een soort reset), P geeft het einde van een transactie aan. Bovenstaand figuur laat de S- en P-conditie zien.
+Omdat I2C maar twee lijnen heeft moeten we buiten de data die we willen verzenden ook informatie verzenden om het proces van het dataverzenden in goede banen te leiden. Hiervoor heeft I$^2$C twee paar speciale signalen, ook wel condities genoemd: S (start) en P (stoP). De S-conditie wordt verzonden door de SDA laag te maken terwijl SCL hoog is. De P-conditie wordt verzonden door de SDA hoog te maken terwijl SCL hoog is. S geeft het begin van een I2C transactie aan (je kan het zien als een soort reset), P geeft het einde van een transactie aan. Bovenstaand figuur laat de S- en P-conditie zien.
 
-Bij SPI zijn er selectielijnen om aan te geven welke slave mocht communiceren over de bus. Bij I<sup>2</sup>C hebben we geen selectielijnen, dus het communiceren over welke slave mag communiceren moet over de bus gaan. Bij I<sup>2</sup>C begint daarom elke transactie van data met een commando-byte die wordt verstuurd door de master. De commando-byte bevat een 7-bit adres, en één R/W-bit dat aangeeft of de transactie een write (de master gaat data naar de slave zenden) of een read (de slave gaat data naar de master zenden) is. De R/W-bit is 1 voor een read, 0 voor een write. 
+Bij SPI zijn er selectielijnen om aan te geven welke slave mocht communiceren over de bus. Bij I$^2$C hebben we geen selectielijnen, dus het communiceren over welke slave mag communiceren moet over de bus gaan. Bij I$^2$C begint daarom elke transactie van data met een commando-byte die wordt verstuurd door de master. De commando-byte bevat een 7-bit adres, en één R/W-bit dat aangeeft of de transactie een write (de master gaat data naar de slave zenden) of een read (de slave gaat data naar de master zenden) is. De R/W-bit is 1 voor een read, 0 voor een write. 
 
 ![De opbouw van de commando-byte.](../I2C/img/commando_byte.png)
 

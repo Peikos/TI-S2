@@ -1,16 +1,16 @@
-![logo](../getalsysteem/img/Numeral_Systems_of_the_World.svg) [](logo-id)
+![logo](img/Numeral_Systems_of_the_World.svg) [](logo-id)
 
 # Numeral system[](title-id)
 
 ### Inhoud[](toc-id)
 
 - [Numeral system](#numeral-system)
-    - [Inhoud](#inhoud)
-  - [Bases](#bases)
-  - [Where do we use this?](#where-do-we-use-this)
-  - [Numbers from 0 to 16 in four different bases](#numbers-from-0-to-16-in-four-different-bases)
-  - [Larger bases - are they actually used?](#larger-bases---are-they-actually-used)
-  - [Referenties](#referenties)
+  - [Inhoud](#inhoud)
+    - [Bases](#bases)
+    - [Where do we use this?](#where-do-we-use-this)
+    - [Numbers from 0 to 16 in four different bases](#numbers-from-0-to-16-in-four-different-bases)
+    - [Larger bases - are they actually used?](#larger-bases---are-they-actually-used)
+    - [Referenties](#referenties)
 
 ---
 
@@ -29,19 +29,19 @@ write numbers in other bases.
 
 The most relevant number bases for programming are:
 
--   \- decimal - the default base for numbers, a single digit is from 0
-    to 9
+- \- decimal - the default base for numbers, a single digit is from 0
+  to 9
 
--   \- hexadecimal or sexagesimal, a convenient abbreviation for binary
-    numbers, because each hexadecimal digit (0..F) represents four bits
+- \- hexadecimal or sexagesimal, a convenient abbreviation for binary
+  numbers, because each hexadecimal digit (0..F) represents four bits
 
--   \- octal - this was used in early computers and one octal digit
-    (0..7) represents three bits, we see it when Unix file access rights
-    are printed or entered, e.g. `chmod 644 myfile.txt` for `rw-r–r–`
+- \- octal - this was used in early computers and one octal digit
+  (0..7) represents three bits, we see it when Unix file access rights
+  are printed or entered, e.g. `chmod 644 myfile.txt` for `rw-r-r-`
 
--   \- binary - the base in which all conventional digital computer
-    circuits work, a bit or binary digit (0..1) represents 'no current'
-    and 'current'
+- \- binary - the base in which all conventional digital computer
+  circuits work, a bit or binary digit (0..1) represents 'no current'
+  and 'current'
 
 To represent bases larger than 10 we normally use the Latin alphabet
 from A to Z for anything larger than 9. This way we can represent values
@@ -49,8 +49,9 @@ from 0 up to base $10 + 26 =$ 36 in a single digit.
 
 ## Numbers from 0 to 16 in four different bases
 
+```
     10     16     8            2
-  ---- ------ ----- ------------
+   ---- ------ ----- ------------
      0   0x00    00   0b00000000
      1   0x01    01   0b00000001
      2   0x02    02   0b00000010
@@ -68,6 +69,7 @@ from 0 up to base $10 + 26 =$ 36 in a single digit.
     14   0x0E   016   0b00001110
     15   0x0F   017   0b00001111
     16   0x10   020   0b00010000
+```
 
 ## Larger bases - are they actually used?
 
@@ -88,7 +90,8 @@ Example for a short text file (with tabulator and newline character) in
 base64 encoding:
 
 ```bash
-VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wcyBvdmVyIHRoZSBsYXp5IGRvZy4KCjAxMjM0NTY3ODkKCiAgICB0YWJ1bGF0b3IhCgo=
+VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wcyBvdmVyIHRoZSBsYXp5IGRvZy4KCjAxMjM0N
+TY3ODkKCiAgICB0YWJ1bGF0b3IhCgo=
 ```
 
 Hexadecimal dump of the input data (`od -Ax -t x1`):

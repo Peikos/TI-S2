@@ -1,16 +1,16 @@
-![logo](../SPI/img/SPI_basic_operation,_single_Main_&_Sub.svg) [](logo-id)
+![logo](img/SPI_basic_operation,_single_Main_&_Sub.svg) [](logo-id)
 
 # SPI: Serial Peripheral Interface[](title-id)
 
 ### Inhoud[](toc-id)
 
 - [SPI: Serial Peripheral Interface](#spi-serial-peripheral-interface)
-    - [Inhoud](#inhoud)
-  - [Een introductie](#een-introductie)
-  - [SPI protocol](#spi-protocol)
-  - [De schakeling](#de-schakeling)
-  - [Arduino voorbeeld code](#arduino-voorbeeld-code)
-  - [Referenties](#referenties)
+  - [Inhoud](#inhoud)
+    - [Een introductie](#een-introductie)
+    - [SPI protocol](#spi-protocol)
+    - [De schakeling](#de-schakeling)
+    - [Arduino voorbeeld code](#arduino-voorbeeld-code)
+    - [Referenties](#referenties)
 
 ---
 
